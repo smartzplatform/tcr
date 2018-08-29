@@ -397,7 +397,7 @@ contract Registry {
                         either whitelists or de-whitelists the listingHash.
     @param _listingHash A listingHash with a challenge that is to be resolved
     */
-    function resolveChallenge(bytes32 _listingHash) private {
+    function resolveChallenge(bytes32 _listingHash) internal {
         uint challengeID = listings[_listingHash].challengeID;
 
         // Calculates the winner's reward,
@@ -435,7 +435,7 @@ contract Registry {
                         application/listing beat a challenge.
     @param _listingHash The listingHash of an application/listingHash to be whitelisted
     */
-    function whitelistApplication(bytes32 _listingHash) private {
+    function whitelistApplication(bytes32 _listingHash) internal {
         if (!listings[_listingHash].whitelisted) { emit _ApplicationWhitelisted(_listingHash); }
         listings[_listingHash].whitelisted = true;
     }
@@ -444,7 +444,7 @@ contract Registry {
     @dev                Deletes a listingHash from the whitelist and transfers tokens back to owner
     @param _listingHash The listing hash to delete
     */
-    function resetListing(bytes32 _listingHash) private {
+    function resetListing(bytes32 _listingHash) internal {
         Listing storage listing = listings[_listingHash];
 
         // Emit events before deleting listing to check whether is whitelisted
@@ -458,7 +458,7 @@ contract Registry {
         address owner = listing.owner;
         uint unstakedDeposit = listing.unstakedDeposit;
         delete listings[_listingHash];
-        
+
         // Transfers any remaining balance back to the owner
         if (unstakedDeposit > 0){
             require(token.transfer(owner, unstakedDeposit));

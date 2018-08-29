@@ -1,6 +1,6 @@
 {
   "name": "sol-tcr",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "description": "A generic, string-keyed TCR in Solidity",
   "scripts": {
     "install": "truffle install",
@@ -35,5 +35,9 @@
     "eslint-config-airbnb-base": "12.1.0",
     "eslint-plugin-import": "2.8.0",
     "solidity-coverage": "0.5.4"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/smartzplatform/tcr.git"
   }
 }
